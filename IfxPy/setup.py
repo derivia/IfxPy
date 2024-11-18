@@ -73,7 +73,8 @@ elif ('linux' in sys.platform):
 	cliFileName = 'OneDB-Linux64-ODBC-Driver.tar'
 	prefix = 'build/lib.linux-'+ platform.processor() + '-' + str(sys.version_info[0])+"."+str(sys.version_info[1]) + '/'
 else:
-	cliFileName = 'Unknown'
+    cliFileName = 'Unknown'
+    os_ = "unknown"
 
 informixdir = os.getenv('INFORMIXDIR', '')
 csdk_home = os.getenv('CSDK_HOME', '')
@@ -172,7 +173,7 @@ if('win32' in sys.platform):
         include_dirs = [py_home + '\\include', csdk_home + '\\incl\\cli'],
         libraries = ['iclit09b'],
         define_macros=definitions,
-        library_dirs = [ py_home + '\libs', csdk_home + '\lib'],
+        library_dirs = [ py_home + '\\libs', csdk_home + '\\lib'],
         sources = ['ifxpyc.c'])
 else:
     IfxPyNative_ext_modules = Extension('IfxPy',

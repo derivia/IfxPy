@@ -79,6 +79,7 @@ static PyObject *my_callback[NUM_OF_SMART_TRIGGER_REGISTRATION];
 typedef struct storeSessionID {
   char label[129];
   int sessionID;
+  SQLHANDLE session_ID;
   struct storeSessionID *next;
 } storeSessionID;
 
@@ -657,7 +658,7 @@ static PyObject *IfxPy_get_smart_trigger_sessionID(PyObject *self,
           found = TRUE;
           break;
         }
-        tempNode = (struct tempNode *)tempNode->next;
+        tempNode = (struct storeSessionID *)tempNode->next;
       }
       if (found == FALSE) {
         PyErr_SetString(PyExc_Exception, "The associated session ID not found "
